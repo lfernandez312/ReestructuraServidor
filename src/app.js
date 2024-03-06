@@ -14,8 +14,9 @@ const fileStorage = fileStore(session);
 const connectedUsers = new Set();
 const chatFile = new FilesDao('chats.json');
 const initializePassport = require('./config/passport.config')
-const passportCall = require('./utils/passport-call.util')
-
+const { authToken } = require('./utils/jwt-utils');
+const passportCall = require('./utils/passport-call.util');
+const cors = require('cors');
 
 // Cargar mensajes desde el archivo al inicio
 let chats = [];
@@ -29,6 +30,7 @@ const app = express();
 
 mongoConnect();
 //app.use(authToken);
+app.use(cors()); // Usa cors aquí
 app.use(express.json());
 app.use(cookieParser(cookieKey));
 app.use(session({

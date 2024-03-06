@@ -9,7 +9,7 @@ const {
   ghclientId,
   ghclientSecret,
   PORT,
-  URL} = require("./security");
+  URL} = require("./config");
 
 const JWTStrategy = jwt.Strategy
 const localStrategy = local.Strategy;
